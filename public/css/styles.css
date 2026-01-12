@@ -1,4 +1,13 @@
 /******* Change Box Model ***************/
+:root {
+  --color-title: #7B1E1E;
+  --color-text: #3A1F1F;
+  --color-bg: #F3E9DC;
+  --color-accent: #B23A2E;
+}
+
+
+
 *,
 *:before,
 *:after {
@@ -8,13 +17,14 @@
 }
 
 
-
 .sections {
   display: grid;
   grid-template-areas:
     "reviews"
     "upgrades";
 }
+
+
 
 
 /*HEADER*/
@@ -27,6 +37,7 @@ header {
 
 header a{
   text-decoration: none;
+  color: var(--color-text);
 }
 
 #top-header{
@@ -41,26 +52,35 @@ header a{
 
 .navBar{
   width: 100%;
+  padding: 0px 30px;
 }
 
 .linksBar{
   margin: 10px 20px;
-  border: 1px solid black;
+  border: 1px solid var(--color-accent);
   display: flex;
   flex-direction: row;
   list-style: none;
   text-align: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .linksBar li{
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-title);
   flex: 1;
-  padding: 10px 10px;
+  background-color: var(--color-bg);
+  width: 100%;
 }
 
 .linksBar li a{
   text-decoration: 0;
+  color: black;
+  width: 100%;
+}
+
+.linksBar li:hover{
+  background-color: #fff;
 }
 
 
@@ -124,6 +144,9 @@ header a{
   gap: 10px;
 }
 
+.delorean-reviews ul a{
+  color: var(--color-text)
+}
 
 
 .delorean-reviews a{

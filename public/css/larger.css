@@ -1,0 +1,52 @@
+@media screen and (min-width: 630px) {
+  .sections {
+    grid-template-areas:
+      "upgrades reviews";
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+.delorean-reviews {
+  grid-area: reviews;
+}
+
+.upgrades {
+  grid-area: upgrades;
+}
+
+.heroPart{
+    display: block;
+    margin-bottom: 30px;
+    justify-items: center;
+}
+
+
+
+.smallPart{
+    padding: 40px 5px;
+    margin: 4px;
+    width: auto;
+}
+
+.smallPart a{
+    font-size: 100%;
+    margin-left: 5px;
+    
+}
+
+body {
+  background-image: url('/images/site/small_check.jpg');
+  background-size:auto;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+#wrapper{
+    margin: 30px 80px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 70px;
+}
+
+
+}

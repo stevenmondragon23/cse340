@@ -60,7 +60,7 @@ header a{
   padding: 0px 30px;
 }
 
-.linksBar{
+.navBar ul{
   margin: 10px 20px;
   border: 1px solid var(--color-accent);
   display: flex;
@@ -71,20 +71,20 @@ header a{
   cursor: pointer;
 }
 
-.linksBar li{
+.navBar ul li{
   border: 1px solid var(--color-title);
   flex: 1;
   background-color: var(--color-bg);
   width: 100%;
 }
 
-.linksBar li a{
+.navBar ul li a{
   text-decoration: 0;
   color: black;
   width: 100%;
 }
 
-.linksBar li:hover{
+.navBar ul li:hover{
   background-color: #fff;
 }
 
@@ -197,3 +197,22 @@ footer{
   position: relative;
   margin: 20px;
 }
+
+
+/* NEW GRID */
+
+#inv-display{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+  list-style: none;
+}
+
+#inv-display li{
+  border: 1px solid black;
+  margin: 20px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+

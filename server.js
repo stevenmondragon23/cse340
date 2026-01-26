@@ -12,6 +12,10 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const errorRoute = require("./routes/errorRoute")
+const utilities = require("../utilities/index")
+
+
 
 /* ***********************
  * View Engine and Templates (Routes)
@@ -23,6 +27,7 @@ app.use(static)
 //Index route
 app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute)
+app.use("/",errorRoute)
 
 /* ***********************
  * Local Server Information
@@ -30,6 +35,21 @@ app.use("/inv", inventoryRoute)
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
+
+/* ***********************
+ * Error Handling Middleware
+ *************************/
+app.use(async (err, req, res, next) => {
+  console.error(err.stack)
+
+  let nav = await utilities.getNav()
+
+  res.status(err.status || 500).render("errors/error", {
+    title: "Server Error",
+    message: "Oh no! There was a crash. Maybe try a different route?",
+    nav
+  })
+})
 
 /* ***********************
  * Log statement to confirm server operation

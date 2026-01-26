@@ -216,3 +216,50 @@ footer{
   border-radius: 8px;
 }
 
+/* INV DETAILS */
+
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.detail-image{
+  margin: 20px;
+}
+
+.detail-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vehicle-price, .vehicle-specs li{
+  background-color: #ddd;
+  margin: 20px;
+  padding: 20px 0px;
+  border-radius: 10px;
+  font-size: large;
+}
+
+.vehicle-description{
+  margin: 0 20px;
+}
+
+.vehicle-specs{
+  list-style: none;
+}
+
+/*ERROR PAGE*/
+.error-container{
+  text-align: center;
+  margin: 20px;
+}
+
+.error-container img{
+  width: 100%;
+  height: auto;
+  display: block;
+}

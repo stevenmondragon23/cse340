@@ -1,0 +1,40 @@
+
+<h1><%= vehicle.inv_year %> <%= title %></h1>
+<section class="detail-container">
+    <div class="detail-image">
+      <img
+        src="<%= vehicle.inv_image %>"
+        alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>"
+      >
+    </div>
+
+    <div class="detail-content">
+
+      <h2 class="vehicle-name">
+        <%= vehicle.inv_make %> <%= vehicle.inv_model %> Details
+      </h2>
+
+      <p class="vehicle-price">
+        <strong>Price:
+        $<%= new Intl.NumberFormat("en-US").format(vehicle.inv_price) %>
+        </strong>
+      </p>
+
+    <p class="vehicle-description">
+        <%= vehicle.inv_description %>
+      </p>
+
+      <ul class="vehicle-specs">
+        <li>
+          <strong>Mileage:</strong>
+          <%= new Intl.NumberFormat("en-US").format(vehicle.inv_miles) %> miles
+        </li> 
+        <li><strong>Color:</strong> <%= vehicle.inv_color %></li>
+      </ul>
+
+
+
+    </div>
+  </section>
+
+

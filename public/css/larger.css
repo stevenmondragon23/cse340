@@ -54,6 +54,26 @@ body {
   flex-direction: row;
 }
 
+  .detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
 
+  .detail-image img {
+    max-width: 100%;
+  }
+  
+  .detail-content{
+    margin-top: 40px;
+  }
+
+
+  .error-container img{
+    width: 600px;
+    align-self: center;
+    justify-self: center;
+  }
 
 }

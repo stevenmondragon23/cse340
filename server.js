@@ -13,7 +13,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
-const utilities = require("../utilities/index")
+const utilities = require("./utilities/index")
 
 
 

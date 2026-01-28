@@ -14,6 +14,7 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
 const utilities = require("./utilities/index")
+const errorHandler = require("./utilities/errorHandler")
 
 
 
@@ -22,7 +23,10 @@ const utilities = require("./utilities/index")
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") 
+app.set("layout", "./layouts/layout")
+// STATIC FILE FIRST
+app.use(express.static("public"))
+
 app.use(static)
 //Index route
 app.get("/", baseController.buildHome)
@@ -39,17 +43,21 @@ const host = process.env.HOST
 /* ***********************
  * Error Handling Middleware
  *************************/
-app.use(async (err, req, res, next) => {
-  console.error(err.stack)
-
+app.use(async (req, res) => {
   let nav = await utilities.getNav()
 
-  res.status(err.status || 500).render("errors/error", {
-    title: "Server Error",
-    message: "Oh no! There was a crash. Maybe try a different route?",
+  res.status(404).render("errors/error", {
+    title: "Page Not Found",
+    message: "Sorry, the page you are looking for does not exist.",
     nav
   })
 })
+
+app.use(errorHandler)
+
+
+
+
 
 /* ***********************
  * Log statement to confirm server operation

@@ -92,6 +92,18 @@ Util.buildInventoryDetail = function (vehicle) {
   `
 }
 
+/* **************************************
+ * Handle async errors
+ * ************************************ */
+Util.handleErrors = function (fn) {
+  return async function (req, res, next) {
+    try {
+      await fn(req, res, next)
+    } catch (error) {
+      next(error)
+    }
+  }
+}
 
 
 

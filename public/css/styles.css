@@ -301,25 +301,20 @@ footer{
   padding: 8px;
 }
 
-/* Campos inválidos */
-.form-inv input:invalid,
-.form-inv textarea:invalid,
-.form-inv select:invalid {
-  border: 2px solid #f2a1a1;        /* rojo suave */
+.form-inv input:invalid:not(:focus):not(:placeholder-shown),
+.form-inv textarea:invalid:not(:focus):not(:placeholder-shown),
+.form-inv select:invalid:not(:focus) {
+  border: 2px solid #f2a1a1;
   background-color: #fff5f5;
 }
 
-/* Campos válidos */
 .form-inv input:valid,
 .form-inv textarea:valid,
 .form-inv select:valid {
-  border: 2px solid #9fd8a3;        /* verde claro */
+  border: 2px solid #9fd8a3;
   background-color: #f4fff6;
 }
 
-/* Quitar estilos feos del navegador */
-.form-inv input,
-.form-inv textarea,
-.form-inv select {
-  outline: none;
-  
+.pop-messa{
+  text-align: center;
+}

@@ -263,3 +263,63 @@ footer{
   height: auto;
   display: block;
 }
+
+
+/*MANAG*/
+
+.manag-list{
+    border: 1px solid rgb(69, 78, 211);
+    margin: 20px;
+    padding: 20px;
+  }
+
+.manag-list ul li{
+  list-style: none;
+}
+
+.manag-list a{
+  text-decoration: none;
+}
+
+/*FORM*/
+
+.form-inv{
+  display: flex;
+  flex-direction: column;
+  background-color: #c7cdf1;
+  margin: 20px;
+  padding: 30px;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.form-inv label{
+  font-size: larger;
+}
+
+.form-inv input{
+  padding: 8px;
+}
+
+/* Campos inválidos */
+.form-inv input:invalid,
+.form-inv textarea:invalid,
+.form-inv select:invalid {
+  border: 2px solid #f2a1a1;        /* rojo suave */
+  background-color: #fff5f5;
+}
+
+/* Campos válidos */
+.form-inv input:valid,
+.form-inv textarea:valid,
+.form-inv select:valid {
+  border: 2px solid #9fd8a3;        /* verde claro */
+  background-color: #f4fff6;
+}
+
+/* Quitar estilos feos del navegador */
+.form-inv input,
+.form-inv textarea,
+.form-inv select {
+  outline: none;
+  

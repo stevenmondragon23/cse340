@@ -1,0 +1,16 @@
+
+<h1><%= title %></h1>
+
+<% if (errors) { %>
+  <% errors.forEach(error => { %>
+    <p class="error"><%= error.msg %></p>
+  <% }) %>
+<% } %>
+
+<nav class="manag-list">
+  <ul>
+    <li><a href="/inv/add-classification">Add Classification</a></li>
+    <li><a href="/inv/add-inventory">Add Inventory</a></li>
+  </ul>
+</nav>
+

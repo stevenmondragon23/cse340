@@ -76,4 +76,12 @@ body {
     justify-self: center;
   }
 
+  .form-inv{
+    margin: 5px 100px;
+  }
+
+  .manag-list{
+    margin: 20px 100px;
+  }
+
 }

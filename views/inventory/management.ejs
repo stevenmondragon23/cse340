@@ -1,3 +1,6 @@
+<% if (typeof message !== 'undefined' && message) { %>
+  <p class="<%= message.type %>"><%= message.content %></p>
+<% } %>
 
 <h1><%= title %></h1>
 

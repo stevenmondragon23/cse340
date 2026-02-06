@@ -50,10 +50,14 @@ invCont.buildInventoryById = async function (req, res, next) {
  * ************************** */
 invCont.buildManagement = async (req, res) => {
   const nav = await utilities.getNav()
+  const message = req.session.message
+  delete req.session.message
+
   res.render("inventory/management", {
     title: "Inventory Management",
     nav,
     errors: null,
+    message,
   })
 }
 
@@ -79,6 +83,10 @@ invCont.addClassification = async function (req, res) {
   const result = await invModel.addClassification(classification_name)
 
   if (result) {
+    req.session.message = {
+      type: "success",
+      content: "Classification added successfully!",
+    }
     res.redirect("/inv/")
   } else {
     res.render("inventory/add-classification", {
@@ -95,12 +103,15 @@ invCont.addClassification = async function (req, res) {
 invCont.buildAddInventory = async function (req, res) {
   const nav = await utilities.getNav()
   const classificationList = await utilities.buildClassificationList()
+  const message = req.session.message
+  delete req.session.message
 
   res.render("inventory/add-inventory", {
     title: "Add Inventory",
     nav,
     classificationList,
     errors: null,
+    message,
   })
 }
 
@@ -109,13 +120,17 @@ invCont.buildAddInventory = async function (req, res) {
  * ************************** */
 invCont.addInventory = async function (req, res) {
   const nav = await utilities.getNav()
-  const classificationList = await utilities.buildClassificationList(
-    req.body.classification_id
-  )
+  const classificationList = await utilities.buildClassificationList(req.body.classification_id)
+  const message = req.session.message
+  delete req.session.message
 
   const result = await invModel.addInventory(req.body)
 
   if (result) {
+    req.session.message = {
+      type: "success",
+      content: "Vehicle added successfully!",
+    }
     res.redirect("/inv/")
   } else {
     res.render("inventory/add-inventory", {
@@ -123,6 +138,7 @@ invCont.addInventory = async function (req, res) {
       nav,
       classificationList,
       errors: [{ msg: "Failed to add vehicle." }],
+      message,
       ...req.body,
     })
   }

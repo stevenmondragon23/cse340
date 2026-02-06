@@ -1,5 +1,9 @@
 <h1><%= title %></h1>
 
+<% if (typeof message !== 'undefined' && message) { %>
+  <p class="<%= message.type %>"><%= message.content %></p>
+<% } %>
+
 <% if (errors) { %>
   <% errors.forEach(error => { %>
     <p class="error"><%= error.msg %></p>

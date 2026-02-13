@@ -318,3 +318,22 @@ footer{
 .pop-messa{
   text-align: center;
 }
+
+/*ACCOUNT INFO*/
+
+.manag-pag{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid black;
+}
+
+.manag-pag h1{
+  margin: 10px;
+}
+
+.manag-pag div{
+  padding: 10px 0px;
+  border: 2px solid #ddd;
+}
+

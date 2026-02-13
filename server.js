@@ -19,6 +19,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 
 
@@ -45,6 +46,12 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// Cookie Parser (Required for JWT)
+app.use(cookieParser())
+
+// Check JWT on every request
+app.use(utilities.checkJWTToken)
+
 /* ***********************
  * View Engine and Templates (Routes)
  *************************/
@@ -60,6 +67,8 @@ app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
 app.use("/",errorRoute)
+
+
 
 
 /* ***********************

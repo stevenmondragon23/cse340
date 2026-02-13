@@ -1,12 +1,65 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+
 const Util = {}
+
+/* ****************************************
+* Middleware to check JWT token (GLOBAL)
+***************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  res.locals.loggedin = false
+
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      (err, accountData) => {
+        if (err) {
+          res.clearCookie("jwt")
+          return next()
+        }
+
+        res.locals.accountData = accountData
+        res.locals.loggedin = true
+        next()
+      }
+    )
+  } else {
+    next()
+  }
+}
+
+/* ****************************************
+* Middleware to require login
+***************************************** */
+Util.checkLogin = (req, res, next) => {
+  if (!res.locals.loggedin) {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+  next()
+}
+
+/* ****************************************
+* Authorization middleware (Employee/Admin only)
+***************************************** */
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  if (res.locals.accountData) {
+    const type = res.locals.accountData.account_type
+    if (type === "Employee" || type === "Admin") {
+      return next()
+    }
+  }
+  req.flash("notice", "You must be logged in as an Employee or Admin.")
+  return res.redirect("/account/login")
+}
 
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  console.log(data)
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
@@ -24,8 +77,6 @@ Util.getNav = async function (req, res, next) {
   list += "</ul>"
   return list
 }
-
-
 
 /* **************************************
 * Build the classification view HTML
@@ -55,13 +106,10 @@ Util.buildClassificationGrid = async function(data){
     })
     grid += '</ul>'
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
-
-
-
 
 /* **************************************
  * Build inventory detail view HTML
@@ -128,7 +176,5 @@ Util.buildClassificationList = async function (classification_id = null) {
   classificationList += "</select>"
   return classificationList
 }
-
-
 
 module.exports = Util

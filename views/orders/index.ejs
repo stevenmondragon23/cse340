@@ -1,0 +1,45 @@
+<div class="manag-pag">
+<h1>Orders</h1>
+
+<table class="orders-table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+
+      <% if (accountType !== "Client") { %>
+        <th>Customer</th>
+      <% } %>
+
+      <th>Vehicle</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% orders.forEach(order => { %>
+    <tr>
+      <td class="col-id" data-label="Order ID"><%= order.order_id %></td>
+
+      <% if (accountType !== "Client") { %>
+        <td data-label="Customer">
+          <%= order.account_firstname %> <%= order.account_lastname %>
+        </td>
+      <% } %>
+
+      <td data-label="Vehicle">
+        <%= order.inv_make %> <%= order.inv_model %>
+      </td>
+
+      <td data-label="Price">$<%= order.item_price %></td>
+      <td class="col-qty" data-label="Quantity"><%= order.quantity %></td>
+      <td data-label="Date"><%= order.order_date %></td>
+    </tr>
+  <% }) %>
+  </tbody>
+</table>
+
+<a class="creat-bottom" href="/orders/create">Create New Order</a>
+
+</div>

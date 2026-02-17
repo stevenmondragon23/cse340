@@ -337,3 +337,63 @@ footer{
   border: 2px solid #ddd;
 }
 
+
+/*TABLE*/
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table thead {
+  display: none; 
+}
+
+.orders-table,
+.orders-table tbody,
+.orders-table tr,
+.orders-table td {
+  display: block;
+  width: 100%;
+}
+
+.orders-table tr {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.orders-table td {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 0.95rem;
+}
+
+
+
+
+
+.orders-table td::before {
+  content: attr(data-label);
+  font-weight: 600;
+  color: #444;
+}
+
+
+
+
+
+.creat-bottom{
+  margin: 20px;
+  border: 2px solid rgb(0, 0, 0);
+  padding: 8px;
+  background-color: var(--color-bg);
+}
+
+.creat-bottom:hover{
+  background-color: white;
+}
+

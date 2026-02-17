@@ -106,10 +106,32 @@ async function addInventory(data) {
   }
 }
 
+/* ***************************
+ * Get all inventory
+ * ************************** */
+async function getInventory() {
+  try {
+    const sql = `
+      SELECT inv_id, inv_make, inv_model, inv_price
+      FROM public.inventory
+      ORDER BY inv_make
+    `
+    const result = await pool.query(sql)
+    return result.rows
+  } catch (error) {
+    console.error("getInventory error " + error)
+  }
+}
+
+
+
+
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryById,
   addClassification,
-  addInventory
+  addInventory,
+  getInventory
 }

@@ -177,4 +177,18 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+/* **************************************
+ * Format date for display
+ * ************************************ */
+Util.formatDate = function (date) {
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }
+  return new Date(date).toLocaleDateString("en-US", options)
+}
+
+
+
 module.exports = Util

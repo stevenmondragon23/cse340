@@ -68,4 +68,47 @@ validate.checkInventoryData = async (req, res, next) => {
   next()
 }
 
+/* ******************************
+ * Order Validation Rules
+ ****************************** */
+validate.orderRules = () => {
+  return [
+    body("inv_id")
+      .notEmpty()
+      .withMessage("Vehicle selection is required."),
+
+    body("quantity")
+      .notEmpty()
+      .withMessage("Quantity is required.")
+      .isInt({ min: 1 })
+      .withMessage("Quantity must be at least 1.")
+  ]
+}
+
+/* ******************************
+ * Check Order Data
+ ****************************** */
+validate.checkOrderData = async (req, res, next) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav()
+    const inventoryModel = require("../models/inventory-model")
+    const inventory = await inventoryModel.getInventory()
+
+    return res.render("orders/create", {
+      title: "Create Order",
+      nav,
+      inventory,
+      errors: errors.array(),
+    })
+  }
+
+  next()
+}
+
+
+
+
+
 module.exports = validate

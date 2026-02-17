@@ -4,10 +4,22 @@
   </span>
 
   <div id="tools">
-<% if (typeof loggedin !== "undefined" && loggedin) { %>
+    <% if (typeof loggedin !== "undefined" && loggedin) { %>
+
       <a href="/account/" title="Go to your account">My Account</a>
       |
+
+      <% if (accountData && accountData.account_type === "Client") { %>
+        <a href="/orders" title="View your orders">My Orders</a>
+      <% } else { %>
+        <a href="/orders" title="View all orders">Orders</a>
+      <% } %>
+
+      |
+      <a href="/orders/create" title="Create a new order">Order</a>
+      |
       <a href="/account/logout" title="Log out">Logout</a>
+
     <% } else { %>
       <a href="/account/login" title="Click to log in">Login</a>
     <% } %>

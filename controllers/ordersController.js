@@ -65,7 +65,6 @@ async function createOrder(req, res, next) {
 
     const order = await ordersModel.createOrder(account_id)
 
-    // Obtener precio actual del vehículo
     const item = await inventoryModel.getInventoryById(inv_id)
 
     await ordersModel.addItemToOrder(
